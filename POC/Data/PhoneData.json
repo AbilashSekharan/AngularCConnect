@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 1,
+        "name" : "Nexus 5",
+        "snippet" : "fast got faster with Nexus 5"
+    },
+    {
+        "id" : 2,        
+        "name" : "Motorola XOOM",
+        "snippet" : "The next generation tablet"
+    },
+    {
+        "id" : 3,
+        "name" : "Motorola XOOM with Wifi",
+        "snippet" : "The next generation tablet"
+    }
+]
