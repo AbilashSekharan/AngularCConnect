@@ -1,0 +1,44 @@
+[
+    {
+        "id" : 1,
+        "from" : "Place1",
+        "to" : "Place2",
+        "vehicle" : "Bus1",
+        "departureTime" : "4:00 pm"
+    },
+    {
+        "id" : 2,
+        "from" : "Place3",
+        "to" : "Place4",
+        "vehicle" : "Bus2",
+        "departureTime" : "4:30 pm"
+    },
+    {
+        "id" : 3,
+        "from" : "Place5",
+        "to" : "Place6",
+        "vehicle" : "Bus3",
+        "departureTime" : "5:00 pm"
+    },
+    {
+        "id" : 4,
+        "from" : "Place7",
+        "to" : "Place8",
+        "vehicle" : "Bus4",
+        "departureTime" : "5:30 pm"
+    },
+    {
+        "id" : 5,
+        "from" : "Place9",
+        "to" : "Place10",
+        "vehicle" : "Bus1",
+        "departureTime" : "6:00 pm"
+    },
+    {
+        "id" : 6,
+        "from" : "Place11",
+        "to" : "Place12",
+        "vehicle" : "Bus2",
+        "departureTime" : "6:30 pm"
+    }
+]

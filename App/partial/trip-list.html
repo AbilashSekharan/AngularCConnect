@@ -1,0 +1,11 @@
+<div class="container-fluid">
+
+    <div class="row" ng-repeat="trip in trips">
+         <div class="col-md-4">
+             <a href="#/trip/{{trip.id}}" ng-bind="trip.id"></a>
+        </div>
+         <div class="col-md-4" ng-bind="trip.vehicle"></div>
+         <div class="col-md-4" ng-bind="trip.departureTime"></div>
+    </div>
+    <p>Total number of phones: {{trips.length}}</p>
+</div>
