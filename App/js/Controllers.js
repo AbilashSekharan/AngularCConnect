@@ -20,10 +20,31 @@ connectApp.config(
               })
             }]);
 
-connectApp.controller("tripListController", function($scope, $http) {    
-    $http.get('data/trips.json').success(function(data){
-         $scope.trips = data;
-    });
+connectApp.factory("tripDetailService", function($http, $q){
+    var tripDetailService = { };
+    tripDetailService.GetAllTrips = function(){      
+        var deffered = $q.defer();        
+        var triplist = [];
+        $http.get('data/trips.json')
+             .success(function(data){
+                deffered.resolve(data);
+              })
+              .error(function (data, status, headers, config) {
+                    console.log("GOT AN ERROR");
+                    deffered.reject("GOT AN ERROR");
+            });
+        return deffered.promise;;
+    };
+    return tripDetailService;
+});
+
+connectApp.controller("tripListController", function($scope, $http, tripDetailService) {   
+    var loadDataPromise = tripDetailService.GetAllTrips();
+    loadDataPromise.then(
+        function(data){
+           $scope.trips = data; 
+        }
+    );
 });
 
 connectApp.controller("tripDetailController", function($scope, $routeParams) {    
