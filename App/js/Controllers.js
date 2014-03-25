@@ -1,4 +1,11 @@
+//==> MODULE
+//=======================================================
+
 var connectApp = angular.module("connectApp",["ngRoute"]);
+
+
+//==> ROUTE PROVIDER
+//=======================================================
 
 connectApp.config(
     ['$routeProvider',
@@ -20,6 +27,10 @@ connectApp.config(
               })
             }]);
 
+
+//==> SERVICE COMPONENTS
+//=======================================================
+
 connectApp.factory("tripDetailService", function($http, $q){
     var tripDetailService = { };
     tripDetailService.GetAllTrips = function(){      
@@ -37,6 +48,9 @@ connectApp.factory("tripDetailService", function($http, $q){
     };
     return tripDetailService;
 });
+
+//==> CONTROLLERS
+//=======================================================
 
 connectApp.controller("tripListController", function($scope, $http, tripDetailService) {   
     var loadDataPromise = tripDetailService.GetAllTrips();
