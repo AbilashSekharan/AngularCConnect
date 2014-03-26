@@ -1,5 +1,14 @@
-<div class="container-fluid">
 
+<div class="container-fluid">
+    <div>
+        <div>
+            <input type="text" datepicker ng-model="tripDate" >
+            <input type="text" ng-model="toPlace" >
+            <input type="button" ng-click="searchTrip(this)" value="Search">
+        </div>
+        
+    </div>
+    
     <div class="row" ng-repeat="trip in trips">
          <div class="col-md-4">
              <a href="#/trip/{{trip.id}}" ng-bind="trip.id"></a>

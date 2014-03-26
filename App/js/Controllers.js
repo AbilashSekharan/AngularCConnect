@@ -1,55 +1,4 @@
-//==> MODULE
-//=======================================================
-
-var connectApp = angular.module("connectApp",["ngRoute"]);
-
-
-//==> ROUTE PROVIDER
-//=======================================================
-
-connectApp.config(
-    ['$routeProvider',
-     function($routeProvider){
-        $routeProvider
-        .when("/trips",
-              {
-                  templateUrl: "/partial/trip-list.html",
-                  controller: "tripListController"                          
-              })
-        .when("/trip/:tripId",
-              {
-                  templateUrl: "/Partial/trip-detail.html",
-                  controller: "tripDetailController"            
-              })
-        .otherwise(
-              {
-                  redirectTo : "/trips"
-              })
-            }]);
-
-
-//==> SERVICE COMPONENTS
-//=======================================================
-
-connectApp.factory("tripDetailService", function($http, $q){
-    var tripDetailService = { };
-    tripDetailService.GetAllTrips = function(){      
-        var deffered = $q.defer();        
-        var triplist = [];
-        $http.get('data/trips.json')
-             .success(function(data){
-                deffered.resolve(data);
-              })
-              .error(function (data, status, headers, config) {
-                    console.log("GOT AN ERROR");
-                    deffered.reject("GOT AN ERROR");
-            });
-        return deffered.promise;;
-    };
-    return tripDetailService;
-});
-
-//==> CONTROLLERS
+//==> TRIP LIST CONTROLLER
 //=======================================================
 
 connectApp.controller("tripListController", function($scope, $http, tripDetailService) {   
@@ -59,11 +8,29 @@ connectApp.controller("tripListController", function($scope, $http, tripDetailSe
            $scope.trips = data; 
         }
     );
+    $scope.searchTrip = function(element){
+        //alert(" Trip date " + $scope.tripDate);
+        //alert(" Trip date " + $scope.toPlace);
+        
+    }
 });
 
-connectApp.controller("tripDetailController", function($scope, $routeParams) {    
-     $scope.tripId = $routeParams.tripId;
-     $scope.from = "FROM will come from data base later";
-     $scope.to = "TO will come from data base later";
-     $scope.time = "TIME will come from the data base later";    
+//==> TRIP DETAILS CONTROLLER
+//=======================================================
+
+connectApp.controller("tripDetailController", function($scope, $routeParams,tripDetailService) {    
+     var loadDataPromise = tripDetailService.GetAllTrips();
+     loadDataPromise.then(
+        function(data){                        
+            var result = jQuery.grep(data
+                                    , function(e){                                      
+                                        return e.id == $routeParams.tripId; 
+                                    });
+            $scope.tripId = result[0].id;
+            $scope.from = result[0].from;
+            $scope.to = result[0].to;
+            $scope.vehicle = result[0].vehicle;
+            $scope.departureTime = result[0].departureTime;
+        }
+    );
 });
