@@ -8,13 +8,21 @@
         </div>
         
     </div>
-    
+    <div class="row">
+        <div class="col-md-1">Id</div>
+        <div class="col-md-1">Date</div>
+        <div class="col-md-1">Time</div>
+        <div class="col-md-1">Destination</div>     
+        <div class="col-md-1">Vehicle Id</div>
+    </div>
     <div class="row" ng-repeat="trip in trips">
-         <div class="col-md-4">
+         <div class="col-md-1">
              <a href="#/trip/{{trip.id}}" ng-bind="trip.id"></a>
         </div>
-         <div class="col-md-4" ng-bind="trip.vehicle"></div>
-         <div class="col-md-4" ng-bind="trip.departureTime"></div>
+        <div class="col-md-1" ng-bind="trip.date"></div>
+        <div class="col-md-1" ng-bind="trip.departureTime"></div>
+        <div class="col-md-1" ng-bind="trip.to"></div>
+        <div class="col-md-1" ng-bind="trip.vehicle"></div>       
     </div>
     <p>Total number of shuttles: {{trips.length}}</p>
 </div>

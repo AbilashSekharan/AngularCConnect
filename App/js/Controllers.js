@@ -11,7 +11,26 @@ connectApp.controller("tripListController", function($scope, $http, tripDetailSe
     $scope.searchTrip = function(element){
         //alert(" Trip date " + $scope.tripDate);
         //alert(" Trip date " + $scope.toPlace);
-        
+        loadDataPromise = tripDetailService.GetAllTrips();
+        loadDataPromise.then(
+            function(data){
+                 var result = jQuery.grep(data
+                                    , function(e){ 
+                                        //alert($scope.tripDate);alert($scope.toPlace);
+                                        var result = false;
+                                        if(($scope.tripDate != undefined || $scope.tripDate == "")  
+                                           && ($scope.toPlace !=undefined || $scope.toPlace == "")){
+                                            result = (e.date ==  $scope.tripDate && e.to == $scope.toPlace); 
+                                        }
+                                        else{                                                                                
+                                            result = (e.date ==  $scope.tripDate || e.to == $scope.toPlace); 
+                                        }
+                                        return result;
+                                    });
+                
+                $scope.trips = result; 
+            }
+        );
     }
 });
 
